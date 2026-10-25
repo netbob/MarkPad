@@ -8,6 +8,12 @@
                 <!-- Default theme; MainWindow swaps this at startup from settings. -->
                 <ResourceDictionary Source="pack://application:,,,/Themes/Light.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <!-- Menu colors at application level: dropdown popups do not reliably
+                 see Window resources, so the style lives here to reach them. -->
+            <Style TargetType="MenuItem">
+                <Setter Property="Foreground" Value="{DynamicResource MenuForeground}" />
+                <Setter Property="Background" Value="{DynamicResource MenuBackground}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

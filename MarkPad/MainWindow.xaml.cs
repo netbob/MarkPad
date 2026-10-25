@@ -113,6 +113,19 @@ public partial class MainWindow : Window
         // Ctrl+F find panel, built into AvalonEdit.
         SearchPanel.Install(editor.TextArea);
 
+        // Right-click menu: AvalonEdit ships no default context menu, so build
+        // the standard one. Items stay enabled; the editor methods no-op when
+        // inapplicable (e.g. Copy with no selection).
+        var contextMenu = new ContextMenu();
+        AddContextItem(contextMenu, "Undo", editor.Undo);
+        AddContextItem(contextMenu, "Redo", editor.Redo);
+        contextMenu.Items.Add(new Separator());
+        AddContextItem(contextMenu, "Cut", editor.Cut);
+        AddContextItem(contextMenu, "Copy", editor.Copy);
+        AddContextItem(contextMenu, "Paste", editor.Paste);
+        AddContextItem(contextMenu, "Select All", editor.SelectAll);
+        editor.ContextMenu = contextMenu;
+
         editor.TextArea.Caret.PositionChanged += (_, _) => UpdateCaretStatus(editor);
         editor.TextChanged += (_, _) => OnEditorTextChanged(editor);
         ApplyEditorTheme(editor);
@@ -405,6 +418,13 @@ public partial class MainWindow : Window
         _wordWrap = WordWrapMenuItem.IsChecked;
         foreach (var tab in _tabs)
             tab.Editor.WordWrap = _wordWrap;
+    }
+
+    private static void AddContextItem(ContextMenu menu, string header, Action action)
+    {
+        var item = new MenuItem { Header = header };
+        item.Click += (_, _) => action();
+        menu.Items.Add(item);
     }
 
     private void ApplyTheme()
