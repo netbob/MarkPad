@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Windows;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
@@ -18,7 +16,6 @@ public static class MarkdownHighlighting
 {
     private static IHighlightingDefinition? _light;
     private static IHighlightingDefinition? _dark;
-    private static readonly HashSet<string> _reportedFailures = new(StringComparer.Ordinal);
 
     public static IHighlightingDefinition? GetDefinition(string theme)
     {
@@ -28,18 +25,8 @@ public static class MarkdownHighlighting
                 return _dark ??= Load("Markdown-Dark.xshd");
             return _light ??= Load("Markdown-Light.xshd");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            // DIAGNOSTIC, temporary: the silent fallback hid the real load error
-            // for two rounds. Surface it once per theme so the cause can be fixed,
-            // then remove this popup. The editor still runs, just unhighlighted.
-            if (_reportedFailures.Add(theme))
-            {
-                MessageBox.Show(
-                    $"MarkPad highlighting diagnostic ({theme}):\n{ex.GetType().Name}: {ex.Message}",
-                    "MarkPad highlighting diagnostic",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
             return null;
         }
     }
