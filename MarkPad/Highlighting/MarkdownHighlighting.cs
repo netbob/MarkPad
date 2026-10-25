@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 
 namespace MarkPad.Highlighting;
 
