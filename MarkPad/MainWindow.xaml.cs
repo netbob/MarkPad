@@ -445,22 +445,27 @@ public partial class MainWindow : Window
             return;
         }
 
+        // Parent the WebView2 control BEFORE initializing it: EnsureCoreWebView2Async
+        // waits on the control being in the visual tree, so initializing first
+        // deadlocked against the content swap below (checked menu, editor still
+        // visible, no error, in both themes).
+        var preview = tab.Preview ??= new PreviewPane();
+        tab.Tab.Content = preview.Control;
+        tab.IsPreview = true;
+        PreviewMenuItem.IsChecked = true;
+
         try
         {
-            var preview = tab.Preview ??= new PreviewPane();
             await preview.RenderAsync(tab.Editor.Text, _theme);
         }
         catch (Exception ex)
         {
+            tab.Tab.Content = tab.Editor;
+            tab.IsPreview = false;
+            PreviewMenuItem.IsChecked = false;
             MessageBox.Show(this, $"Preview is not available:\n{ex.Message}", "MarkPad",
                 MessageBoxButton.OK, MessageBoxImage.Warning);
-            PreviewMenuItem.IsChecked = false;
-            return;
         }
-
-        tab.Tab.Content = tab.Preview.Control;
-        tab.IsPreview = true;
-        PreviewMenuItem.IsChecked = true;
     }
 
     private void WordWrap_Click(object sender, RoutedEventArgs e)
