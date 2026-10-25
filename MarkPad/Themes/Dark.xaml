@@ -20,4 +20,12 @@
     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#007ACC" />
     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FFFFFF" />
     <SolidColorBrush x:Key="{x:Static SystemColors.GrayTextBrushKey}" Color="#808080" />
+    <!-- Explicit context-menu panel: if the system-brush override above does not
+         reach a popup, this still paints the panel dark. Dark-only, like the
+         overrides; light mode keeps the system light panel. -->
+    <Style TargetType="ContextMenu">
+        <Setter Property="Background" Value="#252526" />
+        <Setter Property="Foreground" Value="#D4D4D4" />
+        <Setter Property="BorderBrush" Value="#3E3E3E" />
+    </Style>
 </ResourceDictionary>

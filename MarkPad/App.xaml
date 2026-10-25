@@ -13,6 +13,10 @@
             <Style TargetType="MenuItem">
                 <Setter Property="Foreground" Value="{DynamicResource MenuForeground}" />
                 <Setter Property="Background" Value="{DynamicResource MenuBackground}" />
+                <!-- The default item border renders light in dark mode (the white
+                     frames around options); transparent keeps hover feedback on the
+                     background alone. Light items already look borderless. -->
+                <Setter Property="BorderBrush" Value="Transparent" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
