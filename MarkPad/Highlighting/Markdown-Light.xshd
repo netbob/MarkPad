@@ -23,7 +23,7 @@
     <Span color="Italic" begin="\*" end="\*" />
     <Span color="Italic" begin="_" end="_" />
     <!-- Headers -->
-    <Rule color="Header">^#{1,6}\s+.*$</Rule>
+    <Rule color="Header">^\#{1,6}\s+.*$</Rule>
     <!-- Images before links (an image is a link with a ! in front). -->
     <Rule color="Link">!\[[^\]]*\]\([^)]*\)</Rule>
     <Rule color="Link">\[[^\]]*\]\([^)]*\)</Rule>
