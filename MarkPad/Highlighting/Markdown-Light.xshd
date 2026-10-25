@@ -14,22 +14,22 @@
 
   <RuleSet ignoreCase="false">
     <!-- Fenced code block: ``` ... ``` -->
-    <Span name="CodeFence" color="Code" begin="^```" end="^```" />
+    <Span color="Code" begin="^```" end="^```" />
     <!-- Inline code -->
-    <Span name="Code" color="Code" begin="`" end="`" />
+    <Span color="Code" begin="`" end="`" />
     <!-- Bold, then italic (bold must win on **). -->
-    <Span name="Bold" color="Bold" begin="\*\*" end="\*\*" />
-    <Span name="Bold" color="Bold" begin="__" end="__" />
-    <Span name="Italic" color="Italic" begin="\*" end="\*" />
-    <Span name="Italic" color="Italic" begin="_" end="_" />
+    <Span color="Bold" begin="\*\*" end="\*\*" />
+    <Span color="Bold" begin="__" end="__" />
+    <Span color="Italic" begin="\*" end="\*" />
+    <Span color="Italic" begin="_" end="_" />
     <!-- Headers -->
-    <Rule name="Header" color="Header" regex="^#{1,6}\s+.*$" />
+    <Rule color="Header" regex="^#{1,6}\s+.*$" />
     <!-- Images before links (an image is a link with a ! in front). -->
-    <Rule name="Link" color="Link" regex="!\[[^\]]*\]\([^)]*\)" />
-    <Rule name="Link" color="Link" regex="\[[^\]]*\]\([^)]*\)" />
+    <Rule color="Link" regex="!\[[^\]]*\]\([^)]*\)" />
+    <Rule color="Link" regex="\[[^\]]*\]\([^)]*\)" />
     <!-- Lists, blockquotes, horizontal rules -->
-    <Rule name="List" color="List" regex="^\s*([-*+]|\d+[.)])\s" />
-    <Rule name="Quote" color="Quote" regex="^\s*&gt;" />
-    <Rule name="Rule" color="Rule" regex="^\s*([-*_]){3,}\s*$" />
+    <Rule color="List" regex="^\s*([-*+]|\d+[.)])\s" />
+    <Rule color="Quote" regex="^\s*&gt;" />
+    <Rule color="Rule" regex="^\s*([-*_]){3,}\s*$" />
   </RuleSet>
 </SyntaxDefinition>
