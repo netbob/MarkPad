@@ -13,9 +13,10 @@
 
   <ItemGroup>
     <!-- AvalonEdit: the WPF text editor control (line numbers, syntax highlighting).
-         If NuGet restore reports this version as unavailable, open Manage NuGet
-         Packages and take the latest 6.x — no code changes are needed. -->
-    <PackageReference Include="ICSharpCode.AvalonEdit" Version="6.3.0" />
+         NOTE: the NuGet package ID is "AvalonEdit", not "ICSharpCode.AvalonEdit" —
+         the project moved to the shorter ID. The assembly and namespaces are
+         still ICSharpCode.AvalonEdit, so the code does not change. -->
+    <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
   </ItemGroup>
 
   <ItemGroup>

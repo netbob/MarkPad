@@ -35,8 +35,11 @@ an internet connection for the first NuGet restore.
    editor control).
 3. Build (Ctrl+Shift+B) and run (F5).
 
-If NuGet restore reports the pinned AvalonEdit version (6.3.0) as
-unavailable, open Manage NuGet Packages and take the latest 6.x — no code
+The one dependency is the AvalonEdit NuGet package, version 6.3.1.120
+(note the package ID: "AvalonEdit", not "ICSharpCode.AvalonEdit" — the
+project moved to the shorter ID; the assembly and namespaces are still
+ICSharpCode.AvalonEdit). If restore ever reports that version as
+unavailable, take the latest 6.x in Manage NuGet Packages — no code
 changes are needed.
 
 ## Use
