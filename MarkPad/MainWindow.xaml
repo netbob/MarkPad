@@ -1,0 +1,63 @@
+<Window x:Class="MarkPad.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MarkPad" Height="700" Width="1100"
+        Background="{DynamicResource WindowBackground}"
+        Foreground="{DynamicResource WindowForeground}"
+        AllowDrop="True">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top"
+              Background="{DynamicResource MenuBackground}"
+              Foreground="{DynamicResource MenuForeground}">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" Click="New_Click" InputGestureText="Ctrl+N" />
+                <MenuItem Header="_Open..." Click="Open_Click" InputGestureText="Ctrl+O" />
+                <MenuItem Header="_Save" Click="Save_Click" InputGestureText="Ctrl+S" />
+                <MenuItem Header="Save _As..." Click="SaveAs_Click" />
+                <Separator />
+                <MenuItem Header="_Close Tab" Click="CloseTab_Click" InputGestureText="Ctrl+W" />
+                <Separator />
+                <MenuItem Header="E_xit" Click="Exit_Click" />
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Undo" Click="Undo_Click" InputGestureText="Ctrl+Z" />
+                <MenuItem Header="_Redo" Click="Redo_Click" InputGestureText="Ctrl+Y" />
+                <Separator />
+                <MenuItem Header="Cu_t" Click="Cut_Click" InputGestureText="Ctrl+X" />
+                <MenuItem Header="_Copy" Click="Copy_Click" InputGestureText="Ctrl+C" />
+                <MenuItem Header="_Paste" Click="Paste_Click" InputGestureText="Ctrl+V" />
+                <MenuItem Header="Select _All" Click="SelectAll_Click" InputGestureText="Ctrl+A" />
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="_Dark Mode" IsCheckable="True" x:Name="DarkModeMenuItem" Click="DarkMode_Click" />
+                <MenuItem Header="_Word Wrap" IsCheckable="True" x:Name="WordWrapMenuItem" Click="WordWrap_Click" />
+            </MenuItem>
+            <MenuItem Header="_Git">
+                <MenuItem Header="_Refresh Status" Click="GitRefresh_Click" />
+                <Separator />
+                <MenuItem Header="_Commit..." x:Name="CommitMenuItem" Click="GitCommit_Click" />
+                <MenuItem Header="_Push" x:Name="PushMenuItem" Click="GitPush_Click" />
+                <MenuItem Header="P_ull" x:Name="PullMenuItem" Click="GitPull_Click" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About MarkPad" Click="About_Click" />
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom"
+                   Background="{DynamicResource StatusBackground}"
+                   Foreground="{DynamicResource StatusForeground}">
+            <StatusBarItem>
+                <TextBlock x:Name="BranchText" Text="No file" />
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <TextBlock x:Name="GitStatusText" Text="" />
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock x:Name="CaretText" Text="Ln 1, Col 1" />
+            </StatusBarItem>
+        </StatusBar>
+        <TabControl x:Name="TabControl" Background="{DynamicResource WindowBackground}" />
+    </DockPanel>
+</Window>

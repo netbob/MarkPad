@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>MarkPad</AssemblyName>
+    <RootNamespace>MarkPad</RootNamespace>
+    <Description>MarkPad — a minimal markdown editor with a git workflow for GitHub.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- AvalonEdit: the WPF text editor control (line numbers, syntax highlighting).
+         If NuGet restore reports this version as unavailable, open Manage NuGet
+         Packages and take the latest 6.x — no code changes are needed. -->
+    <PackageReference Include="ICSharpCode.AvalonEdit" Version="6.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Markdown highlighting definitions, one per theme. Embedded so the app
+         is a single exe with no loose files to lose. -->
+    <EmbeddedResource Include="Highlighting\Markdown-Light.xshd" />
+    <EmbeddedResource Include="Highlighting\Markdown-Dark.xshd" />
+  </ItemGroup>
+
+</Project>

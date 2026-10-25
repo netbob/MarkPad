@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MarkPad markdown highlighting (light theme).
+     Rule order matters: longer constructs first (fence, bold) so they win
+     over shorter ones (inline code, italic) at the same position. -->
+<SyntaxDefinition name="Markdown" extensions=".md;.markdown">
+  <Color name="Header" foreground="#0066CC" fontWeight="bold" />
+  <Color name="Bold" foreground="#000000" fontWeight="bold" />
+  <Color name="Italic" foreground="#000000" fontStyle="italic" />
+  <Color name="Code" foreground="#A31515" background="#F2F2F2" />
+  <Color name="Link" foreground="#0563C1" />
+  <Color name="List" foreground="#267F99" />
+  <Color name="Quote" foreground="#008000" fontStyle="italic" />
+  <Color name="Rule" foreground="#808080" />
+
+  <RuleSet ignoreCase="false">
+    <!-- Fenced code block: ``` ... ``` -->
+    <Span name="CodeFence" color="Code" begin="^```" end="^```" />
+    <!-- Inline code -->
+    <Span name="Code" color="Code" begin="`" end="`" />
+    <!-- Bold, then italic (bold must win on **). -->
+    <Span name="Bold" color="Bold" begin="\*\*" end="\*\*" />
+    <Span name="Bold" color="Bold" begin="__" end="__" />
+    <Span name="Italic" color="Italic" begin="\*" end="\*" />
+    <Span name="Italic" color="Italic" begin="_" end="_" />
+    <!-- Headers -->
+    <Rule name="Header" color="Header" regex="^#{1,6}\s+.*$" />
+    <!-- Images before links (an image is a link with a ! in front). -->
+    <Rule name="Link" color="Link" regex="!\[[^\]]*\]\([^)]*\)" />
+    <Rule name="Link" color="Link" regex="\[[^\]]*\]\([^)]*\)" />
+    <!-- Lists, blockquotes, horizontal rules -->
+    <Rule name="List" color="List" regex="^\s*([-*+]|\d+[.)])\s" />
+    <Rule name="Quote" color="Quote" regex="^\s*&gt;" />
+    <Rule name="Rule" color="Rule" regex="^\s*([-*_]){3,}\s*$" />
+  </RuleSet>
+</SyntaxDefinition>
