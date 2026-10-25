@@ -30,6 +30,7 @@ public partial class MainWindow : Window
         public required TextEditor Editor { get; init; }
         public required EditorDocument Document { get; init; }
         public required TextBlock HeaderText { get; init; }
+        public required ChangeTracker Tracker { get; init; }
     }
 
     private readonly List<EditorTab> _tabs = new();
@@ -73,6 +74,12 @@ public partial class MainWindow : Window
         var doc = new EditorDocument();
         var editor = CreateEditor();
 
+        // Notepad++-style change markers: orange = changed since last save,
+        // green = changed since open and saved. Display-only; never touches the file.
+        var tracker = new ChangeTracker(editor.Document);
+        var changeMargin = new ChangeMarkerMargin(editor.TextArea.TextView, tracker);
+        editor.TextArea.LeftMargins.Add(changeMargin);
+
         var headerText = new TextBlock { Text = doc.DisplayName, Margin = new Thickness(0, 0, 6, 0) };
         var closeButton = new Button
         {
@@ -89,7 +96,7 @@ public partial class MainWindow : Window
         header.Children.Add(closeButton);
 
         var tabItem = new TabItem { Header = header, Content = editor };
-        var tab = new EditorTab { Tab = tabItem, Editor = editor, Document = doc, HeaderText = headerText };
+        var tab = new EditorTab { Tab = tabItem, Editor = editor, Document = doc, HeaderText = headerText, Tracker = tracker };
         closeButton.Click += (_, _) => CloseTab(tab);
 
         _tabs.Add(tab);
@@ -226,6 +233,7 @@ public partial class MainWindow : Window
         try
         {
             tab.Document.LoadFromFile(path, tab.Editor);
+            tab.Tracker.Reset();
         }
         catch (Exception ex)
         {
@@ -276,6 +284,7 @@ public partial class MainWindow : Window
         try
         {
             tab.Document.SaveToFile(tab.Editor, dlg.FileName);
+            tab.Tracker.MarkSaved();
         }
         catch (Exception ex)
         {
@@ -296,6 +305,7 @@ public partial class MainWindow : Window
         try
         {
             tab.Document.SaveToFile(tab.Editor);
+            tab.Tracker.MarkSaved();
         }
         catch (Exception ex)
         {
@@ -336,6 +346,7 @@ public partial class MainWindow : Window
             try
             {
                 tab.Document.SaveToFile(tab.Editor, dlg.FileName);
+                tab.Tracker.MarkSaved();
             }
             catch (Exception ex)
             {
