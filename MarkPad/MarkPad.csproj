@@ -9,6 +9,7 @@
     <AssemblyName>MarkPad</AssemblyName>
     <RootNamespace>MarkPad</RootNamespace>
     <Description>MarkPad — a minimal markdown editor with a git workflow for GitHub.</Description>
+    <ApplicationIcon>MarkPad.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +22,10 @@
     <PackageReference Include="Markdig" Version="0.40.0" />
     <!-- WebView2: Edge/Chromium renderer for the preview (verified 1.0.3595.46). -->
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3595.46" />
+    <!-- Velopack: Setup.exe installer + auto-updates from GitHub Releases
+         (verified 1.2.161, latest stable Sep 29, 2026; 1.2.158 is deprecated
+         and 1.3.x is prerelease, so both are skipped). -->
+    <PackageReference Include="Velopack" Version="1.2.161" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +33,12 @@
          is a single exe with no loose files to lose. -->
     <EmbeddedResource Include="Highlighting\Markdown-Light.xshd" />
     <EmbeddedResource Include="Highlighting\Markdown-Dark.xshd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- App icon: the exe icon (ApplicationIcon above) and the window icon
+         (MainWindow Icon) both use this file. -->
+    <Resource Include="MarkPad.ico" />
   </ItemGroup>
 
 </Project>

@@ -5,6 +5,7 @@
     <SolidColorBrush x:Key="MenuBackground" Color="#F3F3F3" />
     <SolidColorBrush x:Key="MenuForeground" Color="#1E1E1E" />
     <SolidColorBrush x:Key="MenuHighlightBrush" Color="#E5E5E5" />
+    <SolidColorBrush x:Key="LinkBrush" Color="#0563C1" />
     <SolidColorBrush x:Key="StatusBackground" Color="#F3F3F3" />
     <SolidColorBrush x:Key="StatusForeground" Color="#1E1E1E" />
     <SolidColorBrush x:Key="BorderBrush" Color="#CCCCCC" />

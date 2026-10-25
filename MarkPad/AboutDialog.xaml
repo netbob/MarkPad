@@ -1,0 +1,25 @@
+<Window x:Class="MarkPad.AboutDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About MarkPad" SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="{DynamicResource WindowBackground}"
+        Foreground="{DynamicResource WindowForeground}">
+    <StackPanel Margin="24" MaxWidth="380">
+        <TextBlock Text="MarkPad" FontSize="22" FontWeight="Bold" Margin="0,0,0,8" />
+        <TextBlock Text="A minimal markdown editor. Single-pane editing, dark mode, preview toggle, change markers, and git commit/push/pull through your own git install." TextWrapping="Wrap" Margin="0,0,0,8" />
+        <TextBlock Text="Free and open source (MIT). No accounts, no telemetry." TextWrapping="Wrap" Margin="0,0,0,12" />
+        <TextBlock Margin="0,0,0,16" TextWrapping="Wrap">
+            <Hyperlink NavigateUri="https://buymeacoffee.com/Netbob" RequestNavigate="Link_RequestNavigate" Foreground="{DynamicResource LinkBrush}">Buy Me a Coffee</Hyperlink>
+            <Run Text=" — the tip jar, if MarkPad earns one." />
+        </TextBlock>
+        <TextBlock Margin="0,0,0,16" TextWrapping="Wrap">
+            <Run Text="Support: " />
+            <Hyperlink NavigateUri="https://github.com/netbob/MarkPad/issues" RequestNavigate="Link_RequestNavigate" Foreground="{DynamicResource LinkBrush}">GitHub Issues</Hyperlink>
+            <Run Text=" for bugs, or comment on the Field Report post at " />
+            <Hyperlink NavigateUri="https://mjmcshane.com" RequestNavigate="Link_RequestNavigate" Foreground="{DynamicResource LinkBrush}">mjmcshane.com</Hyperlink>
+            <Run Text="." />
+        </TextBlock>
+        <Button Content="OK" Width="80" HorizontalAlignment="Right" Click="Ok_Click" IsDefault="True" />
+    </StackPanel>
+</Window>

@@ -13,6 +13,8 @@ using ICSharpCode.AvalonEdit.Search;
 using MarkPad.Git;
 using MarkPad.Highlighting;
 using Microsoft.Win32;
+using Velopack;
+using Velopack.Sources;
 
 namespace MarkPad;
 
@@ -383,6 +385,23 @@ public partial class MainWindow : Window
         }
 
         _settings.Save();
+
+        // A background-downloaded update applies now that the user is quitting
+        // normally: the updater waits for this graceful exit, applies silently,
+        // and does not relaunch, so the next launch is the new version. Never
+        // forced mid-session, and never after a cancelled close.
+        if (App.UpdateDownloaded)
+        {
+            try
+            {
+                var mgr = new UpdateManager(new GithubSource("https://github.com/netbob/MarkPad", null, false));
+                mgr.WaitExitThenApplyUpdates(null, silent: true, restart: false);
+            }
+            catch
+            {
+                // The staged update stays staged; the next launch re-checks.
+            }
+        }
     }
 
     private void OnDrop(object sender, DragEventArgs e)
@@ -670,8 +689,6 @@ public partial class MainWindow : Window
 
     private void About_Click(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show(this,
-            "MarkPad — a minimal markdown editor.\n\nSingle-pane editing, dark mode, and git commit/push/pull through your own git install.\n\nFree and open source (MIT).",
-            "About MarkPad", MessageBoxButton.OK, MessageBoxImage.Information);
+        new AboutDialog { Owner = this }.ShowDialog();
     }
 }
