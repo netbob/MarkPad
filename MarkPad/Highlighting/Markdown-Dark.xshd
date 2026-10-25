@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- MarkPad markdown highlighting (dark theme).
      Same rules as Markdown-Light.xshd; only the colors differ. -->
-<SyntaxDefinition name="Markdown" extensions=".md;.markdown">
+<SyntaxDefinition name="Markdown" extensions=".md;.markdown" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
   <Color name="Header" foreground="#6CB6FF" fontWeight="bold" />
   <Color name="Bold" foreground="#FFFFFF" fontWeight="bold" />
   <Color name="Italic" foreground="#D4D4D4" fontStyle="italic" />

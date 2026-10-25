@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
@@ -21,8 +22,8 @@ public static class MarkdownHighlighting
         try
         {
             if (theme == "Dark")
-                return _dark ??= Load("MarkPad.Highlighting.Markdown-Dark.xshd");
-            return _light ??= Load("MarkPad.Highlighting.Markdown-Light.xshd");
+                return _dark ??= Load("Markdown-Dark.xshd");
+            return _light ??= Load("Markdown-Light.xshd");
         }
         catch
         {
@@ -30,12 +31,21 @@ public static class MarkdownHighlighting
         }
     }
 
-    private static IHighlightingDefinition Load(string resourceName)
+    private static IHighlightingDefinition Load(string fileName)
     {
         var assembly = Assembly.GetExecutingAssembly();
-        using var stream = assembly.GetManifestResourceStream(resourceName)
-            ?? throw new InvalidOperationException($"Embedded highlighting not found: {resourceName}");
-        using var reader = XmlReader.Create(stream);
+        var stream = assembly.GetManifestResourceStream("MarkPad.Highlighting." + fileName);
+        if (stream == null)
+        {
+            // Fall back to any embedded resource ending with the file name, so a
+            // different root namespace or folder layout cannot silently kill highlighting.
+            var match = assembly.GetManifestResourceNames()
+                .FirstOrDefault(n => n.EndsWith(fileName, StringComparison.OrdinalIgnoreCase));
+            if (match != null)
+                stream = assembly.GetManifestResourceStream(match);
+        }
+        using var owned = stream ?? throw new InvalidOperationException($"Embedded highlighting not found: {fileName}");
+        using var reader = XmlReader.Create(owned);
         return HighlightingLoader.Load(reader, HighlightingManager.Instance);
     }
 }

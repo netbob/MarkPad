@@ -5,6 +5,14 @@
         Background="{DynamicResource WindowBackground}"
         Foreground="{DynamicResource WindowForeground}"
         AllowDrop="True">
+    <Window.Resources>
+        <!-- Explicit menu colors: without these, dropdown items can render
+             with system brushes that read as disabled on a dark popup. -->
+        <Style TargetType="MenuItem">
+            <Setter Property="Foreground" Value="{DynamicResource MenuForeground}" />
+            <Setter Property="Background" Value="{DynamicResource MenuBackground}" />
+        </Style>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top"
               Background="{DynamicResource MenuBackground}"

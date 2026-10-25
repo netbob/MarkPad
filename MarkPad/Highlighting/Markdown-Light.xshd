@@ -2,7 +2,7 @@
 <!-- MarkPad markdown highlighting (light theme).
      Rule order matters: longer constructs first (fence, bold) so they win
      over shorter ones (inline code, italic) at the same position. -->
-<SyntaxDefinition name="Markdown" extensions=".md;.markdown">
+<SyntaxDefinition name="Markdown" extensions=".md;.markdown" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
   <Color name="Header" foreground="#0066CC" fontWeight="bold" />
   <Color name="Bold" foreground="#000000" fontWeight="bold" />
   <Color name="Italic" foreground="#000000" fontStyle="italic" />
