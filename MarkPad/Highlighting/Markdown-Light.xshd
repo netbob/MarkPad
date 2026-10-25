@@ -23,13 +23,13 @@
     <Span color="Italic" begin="\*" end="\*" />
     <Span color="Italic" begin="_" end="_" />
     <!-- Headers -->
-    <Rule color="Header" regex="^#{1,6}\s+.*$" />
+    <Rule color="Header">^#{1,6}\s+.*$</Rule>
     <!-- Images before links (an image is a link with a ! in front). -->
-    <Rule color="Link" regex="!\[[^\]]*\]\([^)]*\)" />
-    <Rule color="Link" regex="\[[^\]]*\]\([^)]*\)" />
+    <Rule color="Link">!\[[^\]]*\]\([^)]*\)</Rule>
+    <Rule color="Link">\[[^\]]*\]\([^)]*\)</Rule>
     <!-- Lists, blockquotes, horizontal rules -->
-    <Rule color="List" regex="^\s*([-*+]|\d+[.)])\s" />
-    <Rule color="Quote" regex="^\s*&gt;" />
-    <Rule color="Rule" regex="^\s*([-*_]){3,}\s*$" />
+    <Rule color="List">^\s*([-*+]|\d+[.)])\s</Rule>
+    <Rule color="Quote">^\s*&gt;</Rule>
+    <Rule color="Rule">^\s*([-*_]){3,}\s*$</Rule>
   </RuleSet>
 </SyntaxDefinition>
