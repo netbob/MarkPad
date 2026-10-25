@@ -117,8 +117,8 @@ public partial class MainWindow : Window
         // the standard one. Items stay enabled; the editor methods no-op when
         // inapplicable (e.g. Copy with no selection).
         var contextMenu = new ContextMenu();
-        AddContextItem(contextMenu, "Undo", editor.Undo);
-        AddContextItem(contextMenu, "Redo", editor.Redo);
+        AddContextItem(contextMenu, "Undo", () => editor.Undo());
+        AddContextItem(contextMenu, "Redo", () => editor.Redo());
         contextMenu.Items.Add(new Separator());
         AddContextItem(contextMenu, "Cut", editor.Cut);
         AddContextItem(contextMenu, "Copy", editor.Copy);
