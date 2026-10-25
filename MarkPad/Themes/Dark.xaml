@@ -11,4 +11,13 @@
     <SolidColorBrush x:Key="EditorBackground" Color="#1E1E1E" />
     <SolidColorBrush x:Key="EditorForeground" Color="#D4D4D4" />
     <SolidColorBrush x:Key="LineNumberForeground" Color="#858585" />
+    <!-- System brushes the default menu template actually paints with. The popup
+         panel and hover colors come from these, not from the MenuItem style, so
+         without them a dark app gets a light system popup. Light mode is left
+         alone: these overrides exist only in the dark dictionary. -->
+    <SolidColorBrush x:Key="{x:Static SystemColors.MenuBrushKey}" Color="#252526" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.MenuTextBrushKey}" Color="#D4D4D4" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#007ACC" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.GrayTextBrushKey}" Color="#808080" />
 </ResourceDictionary>
