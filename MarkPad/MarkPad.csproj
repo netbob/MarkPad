@@ -17,6 +17,10 @@
          the project moved to the shorter ID. The assembly and namespaces are
          still ICSharpCode.AvalonEdit, so the code does not change. -->
     <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
+    <!-- Markdig: markdown -> HTML for the preview toggle (verified 0.40.0 on nuget.org). -->
+    <PackageReference Include="Markdig" Version="0.40.0" />
+    <!-- WebView2: Edge/Chromium renderer for the preview (verified 1.0.3595.46). -->
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3595.46" />
   </ItemGroup>
 
   <ItemGroup>

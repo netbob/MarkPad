@@ -31,6 +31,7 @@
             <MenuItem Header="_View">
                 <MenuItem Header="_Dark Mode" IsCheckable="True" x:Name="DarkModeMenuItem" Click="DarkMode_Click" />
                 <MenuItem Header="_Word Wrap" IsCheckable="True" x:Name="WordWrapMenuItem" Click="WordWrap_Click" />
+                <MenuItem Header="_Preview" IsCheckable="True" x:Name="PreviewMenuItem" Click="Preview_Click" />
             </MenuItem>
             <MenuItem Header="_Git">
                 <MenuItem Header="_Refresh Status" Click="GitRefresh_Click" />

@@ -31,6 +31,8 @@ public partial class MainWindow : Window
         public required EditorDocument Document { get; init; }
         public required TextBlock HeaderText { get; init; }
         public required ChangeTracker Tracker { get; init; }
+        public PreviewPane? Preview { get; set; }
+        public bool IsPreview { get; set; }
     }
 
     private readonly List<EditorTab> _tabs = new();
@@ -156,6 +158,7 @@ public partial class MainWindow : Window
         var tab = ActiveTab;
         if (tab != null)
             UpdateCaretStatus(tab.Editor);
+        PreviewMenuItem.IsChecked = tab?.IsPreview == true;
         _ = RefreshGitStatusAsync();
     }
 
@@ -422,6 +425,42 @@ public partial class MainWindow : Window
         _settings.Theme = _theme;
         _settings.Save();
         ApplyTheme();
+        // A visible preview follows the theme; re-render it from the same snapshot text.
+        if (ActiveTab is { IsPreview: true } previewTab && previewTab.Preview != null)
+            _ = previewTab.Preview.RenderAsync(previewTab.Editor.Text, _theme);
+    }
+
+    private async void Preview_Click(object sender, RoutedEventArgs e)
+    {
+        var tab = ActiveTab;
+        if (tab == null)
+            return;
+
+        if (tab.IsPreview)
+        {
+            // Back to editing: the editor was only detached, never discarded.
+            tab.Tab.Content = tab.Editor;
+            tab.IsPreview = false;
+            PreviewMenuItem.IsChecked = false;
+            return;
+        }
+
+        try
+        {
+            var preview = tab.Preview ??= new PreviewPane();
+            await preview.RenderAsync(tab.Editor.Text, _theme);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(this, $"Preview is not available:\n{ex.Message}", "MarkPad",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            PreviewMenuItem.IsChecked = false;
+            return;
+        }
+
+        tab.Tab.Content = tab.Preview.Control;
+        tab.IsPreview = true;
+        PreviewMenuItem.IsChecked = true;
     }
 
     private void WordWrap_Click(object sender, RoutedEventArgs e)
