@@ -45,8 +45,10 @@ Avalonia, one platform at a time. No dates, no promises.
   update from GitHub Releases (or wait for that version — see above).
 - If it isn't listed anywhere, or something isn't working as
   described, open an issue at
-  https://github.com/netbob/MarkPad/issues — that's where assistance
-  happens for MarkPad. Questions are also welcome in the comments on
-  the Field Report announcement at https://mjmcshane.com.
+  https://github.com/netbob/MarkPad/issues for bugs. For questions
+  about using MarkPad, post in Discussions, in the Q&A category:
+  https://github.com/netbob/MarkPad/discussions. Questions are also
+  welcome in the comments on the Field Report announcement at
+  https://mjmcshane.com.
 
 MarkPad is free forever, MIT, no accounts, no telemetry.
