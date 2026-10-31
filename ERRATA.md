@@ -11,7 +11,13 @@ change markers, dark mode, and a git commit/push/pull workflow through
 your own git install. The editor never reformats a file. Installed via
 Setup.exe from GitHub Releases, with automatic updates.
 
-No confirmed issues in 1.0.0 at this writing. This file is updated as
+Confirmed issue in 1.0.0: double-clicking a .md file in Explorer
+launches MarkPad to a blank Untitled tab instead of opening the file,
+even when the file is passed on the command line. File > Open and
+drag-and-drop into the editor window both work correctly. Cause: the
+app does not yet read the file path passed on launch. Workaround: open
+files from inside MarkPad (File > Open) or drag them into the window.
+Fix queued for v1.1. This file is updated as
 issues are confirmed and fixed.
 
 ## v1.1 — Spellcheck (queued, not yet released)
